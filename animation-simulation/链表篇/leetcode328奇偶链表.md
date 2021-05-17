@@ -36,6 +36,8 @@
 
 #### 题目代码
 
+Java Code:
+
 ```java
 class Solution {
     public ListNode oddEvenList(ListNode head) {
@@ -58,5 +60,48 @@ class Solution {
          return head;
     }
 }
+```
+
+C++ Code:
+
+```cpp
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+         if (head == nullptr || head->next == nullptr) {
+             return head;
+         }
+         ListNode * odd = head;
+         ListNode * even = head->next;
+         ListNode * evenhead = even;
+
+         while (odd->next != nullptr && even->next != nullptr) {
+             //将偶数位合在一起，奇数位合在一起
+             odd->next = even->next;
+             odd = odd->next;
+             even->next = odd->next;
+             even = even->next;
+         }  
+         //链接
+         odd->next = evenhead;
+         return head;
+    }
+};
+```
+
+JS Code:
+```javascript
+var oddEvenList = function(head) {
+    if(!head || !head.next) return head;
+    let odd = head, even = head.next, evenHead = even;
+    while(odd.next && even.next){
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next;
+    }
+    odd.next = evenHead;
+    return head;
+};
 ```
 
